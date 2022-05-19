@@ -10,6 +10,7 @@ require "sfx"
     - Add a timer for the game
     - Menus/ title screen
     - Add sfx for dragging and launching
+    - Improve sucky collision detection/hitboxes
 ]]
 
 

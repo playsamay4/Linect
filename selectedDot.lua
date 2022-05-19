@@ -16,16 +16,31 @@ function SelectedDot_Update(dt)
         end
 
          
-    if (dots[i].x ~= nil and selectedDot.x ~= nil) and (i ~= selectedDot.id) then
-        if ( ( selectedDot.x > dots[i].x-5 ) and (selectedDot.x < dots[i].x+5) ) and ( ( selectedDot.y > dots[i].y-5 ) and (selectedDot.y < dots[i].y+5) )  then 
+    if (dots[i].x ~= nil and selectedDot.x ~= nil) and (i ~= selectedDot.id) and dots[i].isCollected ~= true then
+        if ( ( selectedDot.x > dots[i].x-9 ) and (selectedDot.x < dots[i].x+9) ) and ( ( selectedDot.y > dots[i].y-9 ) and (selectedDot.y < dots[i].y+9) )  then 
             collectSfx:play()   
+            dots[i].isCollected = true
+            --table.remove(dots, i)
+            --addDot()
+        end
+    end
+
+    if (dots[i].isCollected) then
+        dots[i].radius = dots[i].radius * 0.8
+        if dots[i].radius < 0.1 then
             table.remove(dots, i)
             addDot()
         end
     end 
+
+    if (dots[i].isEntering) then
+        dots[i].radius = dots[i].radius + 0.2
+        if dots[i].radius > defaultRadius then
+            dots[i].isEntering = false
+            dots[i].radius = defaultRadius
+        end
+    end
    
-
-
     
         
     end
@@ -61,6 +76,7 @@ function SelectedDot_Update(dt)
         refocusSelectedDot()
     end
 
+
     --print(selectedDot.x, selectedDot.y)
     --print(dots[3].x, dots[3].y)
 
@@ -71,8 +87,8 @@ function Dots_Draw()
         if not (v.isSelected or v.isLaunched) then
             --Non selected dots
             love.graphics.setColor(dotColor)
-            love.graphics.circle("fill", v.x, v.y, 5)
-            --love.graphics.rectangle("fill",dots[i].x-5, dots[i].y-5, 11, 11)
+            love.graphics.circle("fill", v.x, v.y, v.radius)
+            --love.graphics.rectangle("fill",dots[i].x-9, dots[i].y-9, 15, 15)
         end
 
         if v.isSelected and rayLine.show then

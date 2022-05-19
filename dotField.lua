@@ -1,4 +1,5 @@
-dots = {{x = 0, y = 0, isSelected = false}}
+defaultRadius = 8
+dots = {{x = 0, y = 0, radius = 0, isSelected = false, isCollected = false, isEntering = false}}
 backgroundColor = {0.9,0.9,0.9}
 dotColor = {0.4,0.4,0.4}
 selectColor = {0.9,0,0}
@@ -14,7 +15,7 @@ function setDotField()
 end
 
 function addDot()
-    table.insert(dots, {x = math.random(0, love.graphics.getWidth()), y = math.random(0, love.graphics.getHeight())})
+    table.insert(dots, {x = math.random(0, love.graphics.getWidth()), y = math.random(0, love.graphics.getHeight()), radius = 0, isEntering = true})
 end
 
 function DotField_Draw()
