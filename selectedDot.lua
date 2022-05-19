@@ -30,6 +30,7 @@ function SelectedDot_Update(dt)
         if dots[i].radius < 0.1 then
             table.remove(dots, i)
             addDot()
+            IncrementScore()
         end
     end 
 

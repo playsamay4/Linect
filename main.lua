@@ -3,6 +3,8 @@ require "ray"
 require "selectedDot"
 require "mouse"
 require "sfx"
+require "score"
+
 --[[
     TO DO:
     -Add a meter for how far you can launch the selected dot, based on how many dots you've collected.
@@ -31,6 +33,7 @@ function love.draw()
     DotField_Draw()
     Ray_Draw()
     Dots_Draw()
+    Score_Draw()
 
 end
 

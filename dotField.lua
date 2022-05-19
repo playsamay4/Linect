@@ -1,4 +1,4 @@
-defaultRadius = 8
+defaultRadius = 6
 dots = {{x = 0, y = 0, radius = 0, isSelected = false, isCollected = false, isEntering = false}}
 backgroundColor = {0.9,0.9,0.9}
 dotColor = {0.4,0.4,0.4}
