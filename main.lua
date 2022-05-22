@@ -48,5 +48,8 @@ function love.keypressed(key)
     end
 end
 
-
-
+function love.gamepadpressed(joystick,button)
+    if button == "start" then
+        love.event.quit()
+    end
+end
