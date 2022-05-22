@@ -3,5 +3,6 @@ function love.conf(t)
     t.window.height = 720
     t.window.title = "Linect"
     t.window.fullscreen = false
-    t.console = true
+    t.window.icon = "resources/icon.png"
+    t.console = false
 end
