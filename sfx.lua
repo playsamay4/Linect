@@ -1,13 +1,13 @@
 wallHitSfx = {
-    love.audio.newSource("sfx/wallHit1.wav", "static"),
-    love.audio.newSource("sfx/wallHit2.wav", "static"),
-    love.audio.newSource("sfx/wallHit3.wav", "static"),
+    love.audio.newSource("/sfx/wallhit1.wav", "static"),
+    love.audio.newSource("/sfx/wallhit2.wav", "static"),
+    love.audio.newSource("/sfx/wallhit3.wav", "static"),
 }
 
 collectSfx = {
-    love.audio.newSource("sfx/collect1.wav", "static"),
-    love.audio.newSource("sfx/collect2.wav", "static"),
-    love.audio.newSource("sfx/collect3.wav", "static"),
+    love.audio.newSource("/sfx/collect1.wav", "static"),
+    love.audio.newSource("/sfx/collect2.wav", "static"),
+    love.audio.newSource("/sfx/collect3.wav", "static"),
 }
 
 function wallHitSfx:play()
