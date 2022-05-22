@@ -96,7 +96,7 @@ function Dots_Draw()
             --Dot when selected and ray is showing
             love.graphics.setColor(selectColor)
             love.graphics.circle("fill", v.x, v.y, 6)
-        elseif v.selected then
+        elseif v.isSelected then
             --Dot when selected
             love.graphics.setColor(launchColor)
             love.graphics.circle("fill", v.x, v.y, 8)
