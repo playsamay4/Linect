@@ -1,7 +1,7 @@
 mousePositions = {downX = 0,downY = 0,x = 0, y = 0}
 inputMode = "mouse"
 
-if (love.system.getOS() == "NX" or love.system.getOS() == "Horizon") then
+if (love.system.getOS() == "NX" or love.system.getOS() == "Horizon" or love.system.getOS() == "iOS" or love.system.getOS() == "Android") then
     inputMode = "touch"
 else
     inputMode = "mouse"
