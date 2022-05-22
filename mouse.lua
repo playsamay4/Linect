@@ -15,9 +15,6 @@ function Mouse_Update()
         mousePositions.x, mousePositions.y = love.touch.getPosition(love.touch.getTouches()[1])
     end
 
-    
-
-
 end
 
 function love.mousepressed(x,y,button)

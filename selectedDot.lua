@@ -4,8 +4,26 @@ selectedDot = {id = 1}
 dotVelocity = {x = 0, y = 0}
 timer = 0
 slideFactor = 0.9
+Died = false
 
 function SelectedDot_Update(dt)
+    if Died then
+    
+        for i,v in ipairs(dots) do
+            dots[i].radius = dots[i].radius * 0.8
+            if dots[i].radius < 0.1 then
+                table.remove(dots,i)
+            end
+        end
+
+        dots[selectedDot.id].radius = dots[selectedDot.id].radius * 0.8
+        if dots[selectedDot.id].radius < 0.1 then
+            Gamestate.Game = false
+            Gamestate.Died = true
+        end
+
+    else
+
     if launchOccuring then timer = timer + dt else timer = 0 end
 
     for i,dot in ipairs(dots) do
@@ -16,12 +34,18 @@ function SelectedDot_Update(dt)
         end
 
          
-    if (dots[i].x ~= nil and selectedDot.x ~= nil) and (i ~= selectedDot.id) and dots[i].isCollected ~= true then
+    if (dots[i].x ~= nil and selectedDot.x ~= nil) and (i ~= selectedDot.id) and (dots[i].isEnemy == false) and dots[i].isCollected ~= true then
         if ( ( selectedDot.x > dots[i].x-9 ) and (selectedDot.x < dots[i].x+9) ) and ( ( selectedDot.y > dots[i].y-9 ) and (selectedDot.y < dots[i].y+9) )  then 
             collectSfx:play()   
             dots[i].isCollected = true
             --table.remove(dots, i)
             --addDot()
+        end
+    end
+
+    if (dots[i].x ~= nil and selectedDot.x ~= nil) and (i ~= selectedDot.id) and (dots[i].isEnemy == true) then
+        if ( ( selectedDot.x > dots[i].x-9 ) and (selectedDot.x < dots[i].x+9) ) and ( ( selectedDot.y > dots[i].y-9 ) and (selectedDot.y < dots[i].y+9) )  then 
+            Died = true
         end
     end
 
@@ -77,15 +101,13 @@ function SelectedDot_Update(dt)
         refocusSelectedDot()
     end
 
-
-    --print(selectedDot.x, selectedDot.y)
-    --print(dots[3].x, dots[3].y)
+    end
 
 end 
 
 function Dots_Draw()
     for i,v in ipairs(dots) do
-        if not (v.isSelected or v.isLaunched) then
+        if not (v.isSelected or v.isLaunched or v.isEnemy) then
             --Non selected dots
             love.graphics.setColor(dotColor)
             love.graphics.circle("fill", v.x, v.y, v.radius)
@@ -96,16 +118,13 @@ function Dots_Draw()
             --Dot when selected and ray is showing
             love.graphics.setColor(selectColor)
             love.graphics.circle("fill", v.x, v.y, 6)
-        elseif v.isSelected then
-            --Dot when selected
+        elseif v.isSelected or v.launched then
+            --Dot when selected or launched
             love.graphics.setColor(launchColor)
-            love.graphics.circle("fill", v.x, v.y, 8)
-        elseif v.launched then 
-            --Dot when launched
-            love.graphics.setColor(launchColor)
-            love.graphics.circle("fill", v.x, v.y, 8)
-        else
-
+            love.graphics.circle("fill", v.x, v.y, v.radius)
+        elseif v.isEnemy then
+            love.graphics.setColor(enemyColor)
+            love.graphics.circle("fill",v.x,v.y,v.radius)
         end
     end 
 
@@ -145,6 +164,7 @@ end
 function randomSelectAsSelected()
     local selected = math.random(1, #dots)
     dots[selected].isSelected = true
+    dots[selected].radius = 8
     rayLine.originX = dots[selected].x
     rayLine.originY = dots[selected].y
     rayLine.endX = dots[selected].x + 100
