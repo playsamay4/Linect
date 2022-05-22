@@ -11,9 +11,7 @@ require "gamestates"
 --[[
     TO DO:
     -Add a meter for how far you can launch the selected dot, based on how many dots you've collected.
-    - Add enemies 
     - Add a timer for the game
-    - Menus/ title screen
     - Add sfx for dragging and launching
     - Improve sucky collision detection/hitboxes
 ]]
