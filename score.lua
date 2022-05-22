@@ -9,7 +9,7 @@ function Score_Draw()
     love.graphics.setColor(1,1,1)
     love.graphics.print("Score", 47, 30)
     love.graphics.setFont(scoreNumberFont)
-    love.graphics.printf(score, 30, 50, 100, "center")
+    love.graphics.printf(score, 30, 55, 100, "center")
 
 end
 
