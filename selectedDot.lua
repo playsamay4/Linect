@@ -8,7 +8,13 @@ Died = false
 
 function SelectedDot_Update(dt)
     if Died then
-    
+        dots[selectedDot.id].radius = dots[selectedDot.id].radius * 0.8
+        if dots[selectedDot.id].radius < 0.1 then
+            Gamestate.Game = false
+            Gamestate.Died = true
+        end
+
+            
         for i,v in ipairs(dots) do
             dots[i].radius = dots[i].radius * 0.8
             if dots[i].radius < 0.1 then
@@ -16,11 +22,6 @@ function SelectedDot_Update(dt)
             end
         end
 
-        dots[selectedDot.id].radius = dots[selectedDot.id].radius * 0.8
-        if dots[selectedDot.id].radius < 0.1 then
-            Gamestate.Game = false
-            Gamestate.Died = true
-        end
 
     else
 
