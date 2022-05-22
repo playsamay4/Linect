@@ -18,20 +18,13 @@ require "gamestates"
     - Improve sucky collision detection/hitboxes
 ]]
 
-
-function love.load()
-    math.randomseed(os.time())
-    setDotField()
-    setEnemyField()
-    randomSelectAsSelected()
-end
-
-
 function love.update(dt)
     if Gamestate.Game then
         Mouse_Update()
         SelectedDot_Update(dt)
         Ray_Update()
+    elseif Gamestate.Menu then
+        MenuScreen_Update(dt)
     end
 end
 
@@ -43,6 +36,8 @@ function love.draw()
         Score_Draw()
     elseif Gamestate.Died then
         DiedScreen_Draw()
+    elseif Gamestate.Menu then
+        MenuScreen_Draw()
     end
 end
 
@@ -58,6 +53,10 @@ function love.keypressed(key)
 
     if Gamestate.Died then
         ResetGame()
+    end
+
+    if Gamestate.Menu then
+        StartGame()
     end
 end
 

@@ -23,6 +23,7 @@ function love.mousepressed(x,y,button)
         rayLine.show = true
     end
     if Gamestate.Died then ResetGame() end
+    if Gamestate.Menu then StartGame() end
 end
 
 function love.mousereleased(x,y,button)
@@ -45,6 +46,7 @@ function love.touchreleased(id, x, y, dx, dy, pressure)
         launchSelectedDot()
     end
         if Gamestate.Died then ResetGame() end
+        if Gamestate.Menu then StartGame() end
 end
 
 
