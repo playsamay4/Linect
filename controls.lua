@@ -3,12 +3,13 @@ inputMode = "mouse"
 
 if (love.system.getOS() == "NX" or love.system.getOS() == "Horizon" or love.system.getOS() == "iOS" or love.system.getOS() == "Android") then
     inputMode = "touch"
+elseif love.joystick:getJoystickCount() > 0 then
+    inputMode = "gamepad"
 else
     inputMode = "mouse"
 end
 
 function Mouse_Update()
-
     if inputMode == "mouse" then
         mousePositions.x, mousePositions.y = love.mouse.getPosition()
     elseif inputMode == "touch" and love.touch.getTouches()[1] ~= nil then
@@ -47,4 +48,17 @@ function love.touchreleased(id, x, y, dx, dy, pressure)
     end
         if Gamestate.Died then ResetGame() end
         if Gamestate.Menu then StartGame() end
+end
+
+function love.joystickreleased(joy,button)
+    if button == "a" and inputMode == "gamepad" then
+        rayLine.show = false
+        launchSelectedDot()
+    end
+end
+
+function love.gamepadpressed(joystick,button)
+    if button == "start" then
+        love.event.quit()
+    end
 end
