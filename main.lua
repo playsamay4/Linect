@@ -1,7 +1,7 @@
 require "dotField"
 require "ray"
 require "selectedDot"
-require "mouse"
+require "controls"
 require "sfx"
 require "score"
 require "enemies"

@@ -48,5 +48,3 @@ function love.touchreleased(id, x, y, dx, dy, pressure)
         if Gamestate.Died then ResetGame() end
         if Gamestate.Menu then StartGame() end
 end
-
-
