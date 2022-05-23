@@ -4,5 +4,5 @@ function love.conf(t)
     t.window.title = "Linect"
     t.window.fullscreen = false
     t.window.icon = "resources/icon.png"
-    t.console = false
+    t.console = true
 end

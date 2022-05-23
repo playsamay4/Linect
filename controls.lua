@@ -1,19 +1,30 @@
 mousePositions = {downX = 0,downY = 0,x = 0, y = 0}
 inputMode = "mouse"
+local GamepadSensitivity = 500
 
 if (love.system.getOS() == "NX" or love.system.getOS() == "Horizon" or love.system.getOS() == "iOS" or love.system.getOS() == "Android") then
     inputMode = "touch"
-elseif love.joystick:getJoystickCount() > 0 then
-    inputMode = "gamepad"
 else
     inputMode = "mouse"
 end
 
 function Mouse_Update()
+    if love.joystick:getJoystickCount() > 0 then
+        inputMode = "gamepad"
+        mousePositions.downX, mousePositions.downY = 0,0
+        Joystick = love.joystick:getJoysticks()[1]
+    else
+        inputMode = "mouse"
+    end
+
     if inputMode == "mouse" then
         mousePositions.x, mousePositions.y = love.mouse.getPosition()
     elseif inputMode == "touch" and love.touch.getTouches()[1] ~= nil then
         mousePositions.x, mousePositions.y = love.touch.getPosition(love.touch.getTouches()[1])
+    elseif inputMode == "gamepad" then
+        if (math.floor(dotVelocity.x) < 2 and math.floor(dotVelocity.x) > -2) or (math.floor(dotVelocity.y) < 2 and math.floor(dotVelocity.y) > -2) then rayLine.show = true else rayLine.show = false end
+        print(math.floor(dotVelocity.x).." "..math.floor(dotVelocity.y))
+        mousePositions.x, mousePositions.y = Joystick:getAxis(1)*GamepadSensitivity, Joystick:getAxis(2)*GamepadSensitivity
     end
 
 end
@@ -34,6 +45,9 @@ function love.mousereleased(x,y,button)
     end
 end
 
+
+
+
 function love.touchpressed(id, x, y, dx, dy, pressure)
     if inputMode == "touch" then
         mousePositions.downX, mousePositions.downY = love.touch.getPosition(id)
@@ -50,9 +64,11 @@ function love.touchreleased(id, x, y, dx, dy, pressure)
         if Gamestate.Menu then StartGame() end
 end
 
-function love.joystickreleased(joy,button)
+
+
+
+function love.gamepadreleased(joystick, button)
     if button == "a" and inputMode == "gamepad" then
-        rayLine.show = false
         launchSelectedDot()
     end
 end
@@ -61,4 +77,8 @@ function love.gamepadpressed(joystick,button)
     if button == "start" then
         love.event.quit()
     end
+    
+
+
+
 end
