@@ -1,6 +1,6 @@
-score = 0
-scoreFont = love.graphics.newFont("fonts/Quicksand-Bold.ttf", 24)
-scoreNumberFont = love.graphics.newFont("fonts/Quicksand-Bold.ttf",50)
+local score = 0
+local scoreFont = love.graphics.newFont("fonts/Quicksand-Bold.ttf", 24)
+local scoreNumberFont = love.graphics.newFont("fonts/Quicksand-Bold.ttf",50)
 
 function Score_Draw()
     love.graphics.setColor(0,0,0,0.3)
