@@ -20,3 +20,7 @@ end
 function ResetScore()
     score = 0
 end
+
+function GetScore()
+    return score
+end

@@ -14,9 +14,9 @@ function DiedScreen_Draw()
     love.graphics.setFont(MenuScreenFont)
     love.graphics.setColor(1,1,1)
     if inputMode == "mouse" then
-        love.graphics.printf("You died.\nScore: "..score.."\n\nPress any key to retry...",0,250,love.graphics.getWidth(),"center")
+        love.graphics.printf("You died.\nScore: "..GetScore().."\n\nPress any key to retry...",0,250,love.graphics.getWidth(),"center")
     elseif inputMode == "touch" then
-        love.graphics.printf("You died.\nScore: "..score.."\n\nTap anywhere to retry...",0,50,love.graphics.getWidth(),"center")
+        love.graphics.printf("You died.\nScore: "..GetScore().."\n\nTap anywhere to retry...",0,50,love.graphics.getWidth(),"center")
     end
 end
 
