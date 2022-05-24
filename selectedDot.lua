@@ -39,8 +39,6 @@ function SelectedDot_Update(dt)
         if ( ( selectedDot.x > dots[i].x-9 ) and (selectedDot.x < dots[i].x+9) ) and ( ( selectedDot.y > dots[i].y-9 ) and (selectedDot.y < dots[i].y+9) )  then 
             collectSfx:play()   
             dots[i].isCollected = true
-            --table.remove(dots, i)
-            --addDot()
         end
     end
 
@@ -53,9 +51,6 @@ function SelectedDot_Update(dt)
     if (dots[i].isCollected) then
         dots[i].radius = dots[i].radius * 0.8
         if dots[i].radius < 0.1 then
-            --Here!!!!!!!!!!!!!!!!!!!!!
-            --table.remove(dots, i)
-             --addDot()
             dots[i].x = math.random(0, love.graphics.getWidth())
             dots[i].y = math.random(0, love.graphics.getHeight())
             dots[i].isCollected = false
