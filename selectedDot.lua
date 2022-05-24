@@ -53,6 +53,7 @@ function SelectedDot_Update(dt)
     if (dots[i].isCollected) then
         dots[i].radius = dots[i].radius * 0.8
         if dots[i].radius < 0.1 then
+            --Here!!!!!!!!!!!!!!!!!!!!!
             table.remove(dots, i)
             addDot()
             IncrementScore()

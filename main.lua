@@ -21,6 +21,7 @@ function love.update(dt)
         Mouse_Update()
         SelectedDot_Update(dt)
         Ray_Update()
+        Enemy_Update(dt)
     elseif Gamestate.Menu then
         MenuScreen_Update(dt)
     end
