@@ -54,8 +54,12 @@ function SelectedDot_Update(dt)
         dots[i].radius = dots[i].radius * 0.8
         if dots[i].radius < 0.1 then
             --Here!!!!!!!!!!!!!!!!!!!!!
-            table.remove(dots, i)
-            addDot()
+            --table.remove(dots, i)
+             --addDot()
+            dots[i].x = math.random(0, love.graphics.getWidth())
+            dots[i].y = math.random(0, love.graphics.getHeight())
+            dots[i].isCollected = false
+            dots[i].isEntering = true
             IncrementScore()
         end
     end 
