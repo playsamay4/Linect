@@ -15,7 +15,7 @@ end
 
 function Enemy_Update(dt)
     for i,v in ipairs(dots) do 
-        if v.isEnemy then
+        if v.isEnemy and i ~= selectedDot.id then
             if v.xVel == 0 then v.x = v.x - v.enemySpeed * dt end
             if v.xVel == 1 then v.x = v.x + v.enemySpeed * dt end
             if v.yVel == 0 then v.y = v.y - v.enemySpeed * dt end
