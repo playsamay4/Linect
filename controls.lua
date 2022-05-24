@@ -1,7 +1,7 @@
 mousePositions = {downX = 0,downY = 0,x = 0, y = 0}
 inputMode = "mouse"
-local GamepadSensitivity = 500
-local UseGamepad = true
+--local GamepadSensitivity = 500
+--local UseGamepad = true
 
 if (love.system.getOS() == "NX" or love.system.getOS() == "Horizon" or love.system.getOS() == "iOS" or love.system.getOS() == "Android") then
     inputMode = "touch"
@@ -11,28 +11,28 @@ end
 
 function Mouse_Update()
     print(inputMode)
-    if love.joystick:getJoystickCount() > 0 and UseGamepad then
-        inputMode = "gamepad"
-        mousePositions.downX, mousePositions.downY = 0,0
-        Joystick = love.joystick:getJoysticks()[1]
-    else
-        inputMode = "mouse"
-    end
+    --if love.joystick:getJoystickCount() > 0 and UseGamepad then
+    --    inputMode = "gamepad"
+    --    mousePositions.downX, mousePositions.downY = 0,0
+    --    Joystick = love.joystick:getJoysticks()[1]
+    --else
+        --inputMode = "mouse"
+    --end
 
     if inputMode == "mouse" then
         mousePositions.x, mousePositions.y = love.mouse.getPosition()
     elseif inputMode == "touch" and love.touch.getTouches()[1] ~= nil then
         mousePositions.x, mousePositions.y = love.touch.getPosition(love.touch.getTouches()[1])
     elseif inputMode == "gamepad" then
-        if (math.floor(dotVelocity.x) < 2 and math.floor(dotVelocity.x) > -2) or (math.floor(dotVelocity.y) < 2 and math.floor(dotVelocity.y) > -2) then rayLine.show = true else rayLine.show = false end
+        --if (math.floor(dotVelocity.x) < 2 and math.floor(dotVelocity.x) > -2) or (math.floor(dotVelocity.y) < 2 and math.floor(dotVelocity.y) > -2) then rayLine.show = true else rayLine.show = false end
         --print(math.floor(dotVelocity.x).." "..math.floor(dotVelocity.y))
-        mousePositions.x, mousePositions.y = Joystick:getAxis(1)*GamepadSensitivity, Joystick:getAxis(2)*GamepadSensitivity
+        --mousePositions.x, mousePositions.y = Joystick:getAxis(1)*GamepadSensitivity, Joystick:getAxis(2)*GamepadSensitivity
     end
 
 end
 
 function love.mousepressed(x,y,button)
-    if inputMode == "gamepad" then inputMode = "mouse" UseGamepad = false end
+    --if inputMode == "gamepad" then inputMode = "mouse" UseGamepad = false end
 
     if inputMode == "mouse" then
         mousePositions.downX, mousePositions.downY = love.mouse.getPosition()
@@ -74,13 +74,13 @@ end
 
 
 function love.gamepadreleased(joystick, button)
-    if button == "a" and inputMode == "gamepad" then
-        launchSelectedDot()
-    end
+    --if button == "a" and inputMode == "gamepad" then
+    --    launchSelectedDot()
+    --end
 end
 
 function love.gamepadpressed(joystick,button)
-    if inputMode == "touch" or inputMode == "mouse" then inputMode = "gamepad" UseGamepad = true end
+    --if inputMode == "touch" or inputMode == "mouse" then inputMode = "gamepad" UseGamepad = true end
 
     if button == "start" then
         love.event.quit()
