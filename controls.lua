@@ -10,7 +10,6 @@ else
 end
 
 function Mouse_Update()
-    print(inputMode)
     --if love.joystick:getJoystickCount() > 0 and UseGamepad then
     --    inputMode = "gamepad"
     --    mousePositions.downX, mousePositions.downY = 0,0
