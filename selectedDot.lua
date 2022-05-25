@@ -5,6 +5,7 @@ dotVelocity = {x = 0, y = 0}
 timer = 0
 slideFactor = 0.9
 Died = false
+Invincible = true
 
 function SelectedDot_Update(dt)
     if Died then
@@ -43,7 +44,7 @@ function SelectedDot_Update(dt)
     end
 
     if (dots[i].x ~= nil and selectedDot.x ~= nil) and (i ~= selectedDot.id) and (dots[i].isEnemy == true) then
-        if ( ( selectedDot.x > dots[i].x-9 ) and (selectedDot.x < dots[i].x+9) ) and ( ( selectedDot.y > dots[i].y-9 ) and (selectedDot.y < dots[i].y+9) )  then 
+        if ( ( selectedDot.x > dots[i].x-9 ) and (selectedDot.x < dots[i].x+9) ) and ( ( selectedDot.y > dots[i].y-9 ) and (selectedDot.y < dots[i].y+9) ) and not Invincible  then 
             Died = true
         end
     end
@@ -112,7 +113,7 @@ function Dots_Draw()
             --Non selected dots
             love.graphics.setColor(dotColor)
             love.graphics.circle("fill", v.x, v.y, v.radius)
-            --love.graphics.rectangle("fill",dots[i].x-9, dots[i].y-9, 15, 15)
+            --love.graphics.rectangle("fill",dots[i].x-9, dots[i].y-9, 15, 15) (SHOW HITBOX/DEBUG)
         end
 
         if v.isSelected and rayLine.show then

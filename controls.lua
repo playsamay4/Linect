@@ -2,6 +2,7 @@ mousePositions = {downX = 0,downY = 0,x = 0, y = 0}
 inputMode = "mouse"
 --local GamepadSensitivity = 500
 --local UseGamepad = true
+local mouseReleaseTimes = 0
 
 if (love.system.getOS() == "NX" or love.system.getOS() == "Horizon" or love.system.getOS() == "iOS" or love.system.getOS() == "Android") then
     inputMode = "touch"
@@ -27,7 +28,6 @@ function Mouse_Update()
         --print(math.floor(dotVelocity.x).." "..math.floor(dotVelocity.y))
         --mousePositions.x, mousePositions.y = Joystick:getAxis(1)*GamepadSensitivity, Joystick:getAxis(2)*GamepadSensitivity
     end
-
 end
 
 function love.mousepressed(x,y,button)
@@ -45,6 +45,8 @@ function love.mousereleased(x,y,button)
     if inputMode == "mouse" then
         rayLine.show = false
         launchSelectedDot()
+        mouseReleaseTimes = mouseReleaseTimes + 1
+        if mouseReleaseTimes > 1 and Invincible then Invincible = false end
     end
 end
 
@@ -64,6 +66,8 @@ function love.touchreleased(id, x, y, dx, dy, pressure)
     if inputMode == "touch" then
         rayLine.show = false
         launchSelectedDot()
+        mouseReleaseTimes = mouseReleaseTimes + 1
+        if mouseReleaseTimes > 1 and Invincible then Invincible = false end
     end
         if Gamestate.Died then ResetGame() end
         if Gamestate.Menu then StartGame() end
@@ -88,4 +92,8 @@ function love.gamepadpressed(joystick,button)
 
 
 
+end
+
+function ResetMouseReleaseTimes()
+    mouseReleaseTimes = 0
 end

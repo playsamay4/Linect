@@ -64,6 +64,8 @@ function ResetGame()
     timer = 0
     slideFactor = 0.9
     Died = false
+    Invincible = true
+    ResetMouseReleaseTimes()
     mousePositions = {downX = 0,downY = 0,x = 0, y = 0}
     rayColor = {0,0,0,0.3}
     rayLine = {beginX = 0, endX = 0, beginY = 0, endY = 0, angle = 0, speed = 0.9, show = false}
