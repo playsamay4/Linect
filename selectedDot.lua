@@ -145,16 +145,16 @@ function launchSelectedDot()
             v.launched = true
             --If the mouse ends up left of the dot, then the velocity is negative
             if mousePositions.x < mousePositions.downX then
-                dotVelocity.x = -math.sqrt( (rayLine.beginX-selectedDot.x)^2 + (rayLine.endX-selectedDot.x)^2 )*launchSpeed
-            else
-                dotVelocity.x = math.sqrt( (rayLine.beginX-selectedDot.x)^2 + (rayLine.endX-selectedDot.x)^2 )*launchSpeed
+                dotVelocity.x = dotVelocity.x + -math.sqrt( (rayLine.beginX-selectedDot.x)^2 + (rayLine.endX-selectedDot.x)^2 )*launchSpeed
+            else 
+                dotVelocity.x = dotVelocity.x + math.sqrt( (rayLine.beginX-selectedDot.x)^2 + (rayLine.endX-selectedDot.x)^2 )*launchSpeed
             end
 
             --If the mouse ends up above the dot, then the velocity is negative
             if mousePositions.y < mousePositions.downY then
-                dotVelocity.y = -math.sqrt( (rayLine.beginY-selectedDot.y)^2 + (rayLine.endY-selectedDot.y)^2 )*launchSpeed
+                dotVelocity.y = dotVelocity.y + -math.sqrt( (rayLine.beginY-selectedDot.y)^2 + (rayLine.endY-selectedDot.y)^2 )*launchSpeed
             else
-                dotVelocity.y = math.sqrt( (rayLine.beginY-selectedDot.y)^2 + (rayLine.endY-selectedDot.y)^2 )*launchSpeed
+                dotVelocity.y =dotVelocity.y + math.sqrt( (rayLine.beginY-selectedDot.y)^2 + (rayLine.endY-selectedDot.y)^2 )*launchSpeed
             end
 
             launchOccuring = true
